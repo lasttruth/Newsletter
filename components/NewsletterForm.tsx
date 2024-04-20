@@ -1,27 +1,71 @@
 "use client";
-import { useState } from "react";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { FormEvent, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
+import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 
 function NewsletterForm() {
   const [input, setInput] = useState("");
+  const [active, setActive] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const { to, fromTo, set } = gsap;
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const email = input;
+    const button = buttonRef.current;
+
+    if (!email || !button) return;
+
+    if (!active) {
+      setActive(true);
+
+      // to gsap animation - for planes
+      to(button, {
+        keyframes: getPlaneKeyframes(set, fromTo, button, setActive, setInput),
+      });
+
+      //animation for the trails
+      to(button, {
+        keyframes: getTrailsKeyframes(button),
+      });
+    }
+  };
 
   return (
     <div className=" flex flex-col space-y-8 md:w-[400px]">
-      <form className="newsletter-form mt-10 animate-fade-in-3">
+      <form
+        className="newsletter-form mt-10 animate-fade-in-3"
+        onSubmit={handleSubmit}
+      >
         <div
           className="group flex items-center gap-x-4 py-1 pl-4 pr-1 rounded-[9px] 
         bg-[#090d11] hover:bg-[#15141b] shadow-outline-gray hover:shadow-transparent
          focus-within:!bg-[#15141b] transition-all duration-300"
         >
-          {/* {<EnvelopeIcon/>} */}
+          <EnvelopeIcon
+            className="hidden sm:inline w-6 h-6 text-[#4B4C52]
+           group-focus-within:text-white
+           group-hover:text-white transition-colors duration-300"
+          />
           <input
             value={input}
             type="email"
             onChange={(e) => setInput(e.target.value)}
             placeholder="Email address"
             required
-            className=""
+            className=" flex-1 text-white text-sm sm:text-base outline-none placeholder:[#4b4c52] 
+             group-focus-within:placeholder-white bg-transparent placeholder:transparent-colors placeholder:duration-300"
           />
-          <button>
+          <button
+            ref={buttonRef}
+            disabled={!input}
+            type="submit"
+            className={`${active && "active"}
+            disabled:!bg-[#17141F] disabled:grayscale-[65%] disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base`}
+          >
             <span className="default">Subscribe</span>
             <span className="success">
               <svg viewBox="0 0 16 16">
