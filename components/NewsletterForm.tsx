@@ -8,10 +8,13 @@ import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 function NewsletterForm() {
   const [input, setInput] = useState("");
   const [active, setActive] = useState(false);
+  const [successMessage, setSuccessMessage] =
+    useState<MembersSuccessResponse>();
+  const [errorMessage, setErrorMessage] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { to, fromTo, set } = gsap;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const email = input;
@@ -32,8 +35,30 @@ function NewsletterForm() {
         keyframes: getTrailsKeyframes(button),
       });
     }
-  };
 
+    //post to api(video @ 1:34:38) more than half way there
+    const res = await fetch("/api/addSubscription", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      setErrorMessage("Hey, you are already subscribed!");
+      setSuccessMessage(undefined);
+      return;
+    }
+
+    setSuccessMessage(data.res);
+    setErrorMessage("");
+
+  };
+  
+  console.log(errorMessage)
   return (
     <div className=" flex flex-col space-y-8 md:w-[400px]">
       <form
