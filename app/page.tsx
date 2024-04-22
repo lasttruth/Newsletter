@@ -1,4 +1,5 @@
 import NewsletterForm from "@/components/NewsletterForm";
+import Socials from "@/components/Socials";
 import Image from "next/image";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       {/** NewsletterForm */}
       <NewsletterForm/>
       {/** Social */}
+      <Socials/>
       {/** Hero maybe */}
     </main>
   );
