@@ -1,5 +1,5 @@
 "use client";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, EnvelopeIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FormEvent, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
@@ -55,10 +55,13 @@ function NewsletterForm() {
 
     setSuccessMessage(data.res);
     setErrorMessage("");
-
   };
-  
-  console.log(errorMessage)
+
+  const dismissMessages = () => {
+    setSuccessMessage(undefined);
+    setErrorMessage("");
+  };
+
   return (
     <div className=" flex flex-col space-y-8 md:w-[400px]">
       <form
@@ -107,6 +110,36 @@ function NewsletterForm() {
               <div className="right"></div>
             </div>
           </button>
+        </div>
+        
+        <div className="relative">
+          {(successMessage || errorMessage) && (
+            <div className="flex items-start space-x-2 bg-[#0A0E12] shadow-outline-gray text-white rounded-[9px] py-4 px-6 animate-fade-bottom absolute">
+              <div className="h-6 w-6 bg-[#1B2926] flex items-center justify-center rounded-full border border-[#273130] flex-shrink-0">
+                <CheckIcon className="h-4 w-4 text-[#81A89A]" />
+              </div>
+              <div className="text-xs sm:text-sm text-[#4B4C52]">
+                {successMessage ? (
+                  <p>
+                    We&apos;ve added{" "}
+                    <span className="text-[#ADB0B1]">
+                      {successMessage.email_address}
+                    </span>{" "}
+                    to our waitlist. We&apos;ll let you know when we launch!
+                  </p>
+                ) : (
+                  <p>
+                    You are already added to our waitlist. We&apos;ll let you
+                    know when we launch!
+                  </p>
+                )}
+              </div>
+              <XMarkIcon
+                className="h-5 w-5 cursor-pointer flex-shrink-0 text-[#4A4B55]"
+                onClick={dismissMessages}
+              />
+            </div>
+          )}
         </div>
       </form>
     </div>
