@@ -4,21 +4,27 @@ import { Metadata } from "next";
 export const socials = [
     {
       id: 1,
-      name: "Twitter",
-      url: "https://twitter.com/lastruth",
-      handle: "@lastruth",
+      name: "Youtube",
+      url: "https://www.youtube.com/@Focuscision",
+      handle: "@Focuscision",
     },
     {
       id: 2,
       name: "Instagram",
-      url: "https://www.instagram.com/rewindxxii",
-      handle: "rewindxxii",
+      url: "https://www.instagram.com/mr.focuscision/",
+      handle: "Fokist Kix",
+    },
+    {
+      id: 3,
+      name: "Ebay",
+      url: "https://www.ebay.com/str/fokistflips",
+      handle: "Fokist Flips",
     },
   ];
 
-  const title = "Robin Doirin";
+  const title = "Andrew Doirin";
 const description =
-  "Full-Stack Software Engineer 🧑🏻‍💻 working with cutting-edge stuff.";
+  "Keep Going";
 const image =
   "https://yt3.ggpht.com/VoEBu0KxtQkfWretx-3_NqxKnoLqfKNTtWq0KFigdqaqVQFz8CggKgqkcxXqCDW7zYWlZZJOuQ=s108-c-k-c0x00ffffff-no-rj";
 
@@ -28,8 +34,8 @@ export const metaData: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://kamekuma.com",
-    siteName: "KameKuma",
+    url: "https://focuscision.com",
+    siteName: "Focuscision Presents",
     images: [{ url: image }],
     locale: "en-US",
     type: "website",
