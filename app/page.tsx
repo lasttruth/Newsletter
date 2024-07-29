@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className=" bg-[#030408] flex flex-col items-center justify-center p-10 min-h-screen">
+    <main className=" bg-[#030408] bg-[url('../public/assests/BG_1_Trans.png')] bg-center bg-cover  flex flex-col items-center justify-center p-10 min-h-screen">
       <div className=" space-y-1">
         <h2
           className="z-10 text-3xl font-bold text-center text-transparent duration-1000

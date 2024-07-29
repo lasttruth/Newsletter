@@ -16,10 +16,10 @@ function Socials() {
             className="!h-16 !w-16"
           />
           <div className="text-xs sm:text-sm space-y-1">
-            <p className="text-[#ADB0B1] group-hover:text-white transition font-medium">
+            <p className="text-[#ADB0B1] group-hover:text-purple-600 transition font-medium">
               {social.name}
             </p>
-            <p className="text-[#4B4C52]">{social.handle}</p>
+            <p className="text-[#a5a6ab]">{social.handle}</p>
           </div>
         </div>
       ))}
