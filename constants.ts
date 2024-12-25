@@ -5,8 +5,8 @@ export const socials = [
     {
       id: 1,
       name: "Youtube",
-      url: "https://www.youtube.com/@Focuscision",
-      handle: "@Focuscision",
+      url: "https://www.youtube.com/@FocuscisionPresents",
+      handle: "@FocuscisionPresents",
     },
     {
       id: 2,
@@ -17,8 +17,14 @@ export const socials = [
     {
       id: 3,
       name: "Ebay",
-      url: "https://www.ebay.com/str/fokistflips",
-      handle: "Fokist Flips",
+      url: "https://www.ebay.com/usr/focuscision11",
+      handle: "Fokist Kix",
+    },
+    {
+      id: 4,
+      name: "TikTok",
+      url: "https://www.tiktok.com/@focuscision?lang=en",
+      handle: "Focuscision",
     },
   ];
 
